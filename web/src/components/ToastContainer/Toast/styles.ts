@@ -54,6 +54,7 @@ export const Container = styled(animated.div)<ContainerProps>`
     position: absolute;
     height: 16px;
     top: 19px;
+    opacity: 0.6;
     border: 0;
     background: transparent;
     color: inherit;
