@@ -23,7 +23,7 @@ class AuthenticateUserService{
             email
         });
         
-        if(!user){
+        if(!user){            
             throw new AppError('Incorrect email/password combination.', 401);
         }
 
