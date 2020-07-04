@@ -1,6 +1,6 @@
 import express, {Request, Response, NextFunction} from 'express';
 import cors from 'cors';
-import 'express-async-error';
+import 'express-async-errors';
 import routes from './routes';
 import uploadConfig from './config/upload';
 import AppError from './errors/AppError';
@@ -8,6 +8,7 @@ import AppError from './errors/AppError';
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
     if(err instanceof AppError){
@@ -22,6 +23,5 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
         message: 'Internal server error'
     });        
 });
-app.use('/files', express.static(uploadConfig.directory));
 
 export default app;
